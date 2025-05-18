@@ -1,7 +1,7 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
+import {Container, Row } from 'react-bootstrap';
 import { NavBarPage } from '../../components';
+import { Footer } from '../../components/footer/Footer';
 
 
 
@@ -11,18 +11,17 @@ export const MiCarritoLayout = ({children}) => {
     <Row className='wrapper-header'>
     {/* NavBar */}
     <NavBarPage/>
-</Row>
+    </Row>
     <Container>
-       
         <Row className='wrapper-main'>
             {/* Main */}
             { children }
         </Row>
-        <Row>
-            {/* Footer */}
-        </Row>
-    
     </Container>
+    <Row className='bg-dark row-footer'>
+            {/* Footer */}
+            <Footer />
+        </Row>
     </>
     
         
