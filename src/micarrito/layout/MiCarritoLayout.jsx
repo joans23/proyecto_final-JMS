@@ -5,20 +5,20 @@ import { Footer } from '../../components/footer/Footer';
 
 
 
-export const MiCarritoLayout = ({children}) => {
+export const MiCarritoLayout = ({children, addToCart, setCantItems, cantItems, carrito}) => {
   return (
     <>
     <Row className='wrapper-header'>
     {/* NavBar */}
-    <NavBarPage/>
+    <NavBarPage  setCantItems={setCantItems} cantItems={cantItems} carrito={carrito}/>
     </Row>
     <Container>
-        <Row className='wrapper-main'>
+        <Row className='wrapper-main'  >
             {/* Main */}
-            { children }
+             {children}
         </Row>
     </Container>
-    <Row className='bg-dark row-footer'>
+    <Row className='bg-dark row-footer' style={{background:"linear-gradient(to top, #ff5e62, #ff9966)"}}>
             {/* Footer */}
             <Footer />
         </Row>

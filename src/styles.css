@@ -1,16 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body,
+html{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
 .wrapper-header,
 .row-footer{
     margin: 0;
 }
 
 .wrapper-content-products{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
+
 
 .wrapper-content-products .card{
     padding: 5px;
+    transition: all .2s ease;
+    width: calc((100% / 4) - 10px);
+}
+
+.wrapper-content-products .card:hover{
+    transform: scale(1.02);
 }
 
 .wrapper-content-products .card .card-img-top{
@@ -21,6 +35,7 @@
 
 .wrapper-main{
     padding: 25px 0;
+    min-height: calc(100vh - 131px);
 }
 
 .wrapper-content-products .card .card-body .card-title{
@@ -45,3 +60,227 @@
     justify-content: center;
     align-items: center;
 }
+
+.wrapper-page-product{
+    display: flex;
+    gap: 30px;
+}
+
+.wrapper-page-product .product-media{
+    flex: 1 auto;
+}
+
+.wrapper-page-product .product-media .carousel.slide .carousel-item .carousel-image{
+    width: 100%;
+    height: 470px; 
+    object-fit: contain; 
+    background-color: #f8f8f8;
+}
+
+.product-info-main{
+    padding: 20px 40px;
+    width: 40%;
+}
+
+.product-info-main .title-product{
+    margin-bottom: 16px;
+}
+.product-info-main .price{
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.login-page{
+    height: 100vh;
+    background-image: url('../public/images/fondo_login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-page:before{
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: inherit;
+    z-index: 0;
+}
+.login-page .container{
+    border-radius: 12px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.login-page .back-home{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: max-content;
+    border-radius: 20px;
+    background: black;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.login-page .container input[type="email"],
+.login-page .container input[type="password"]{
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.login-page .container input:focus{
+    outline: none;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.login-page .container button{
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+
+.login-page .container button{
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+}
+
+.login-page h2{
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.about-page {
+    background-color: #f8f9fa;
+}
+
+.about-page h2, .about-page h3, .about-page h4 {
+    color: #222;
+}
+
+.about-page p {
+    color: #555;
+}
+
+.minicart-link{
+    position: relative;
+}
+
+.minicart-link .counter{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #858585;
+    border-radius: 50px;
+    width: 15px;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-section {
+    background-color: #f8f9fa;
+}
+
+.contact-section h2 {
+    color: #222;
+}
+
+.contact-section .form-label {
+    font-weight: 500;
+}
+
+.map-responsive iframe {
+    border-radius: 8px;
+}
+
+
+.footer-section {
+    background-color: #1e1e2f;
+}
+
+.footer-link {
+    color: #bbb;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+.footer-icon {
+    color: #bbb;
+    transition: color 0.3s;
+}
+
+.footer-icon:hover {
+    color: white;
+}
+
+
+@media only screen and (max-width: 460px) {
+        .wrapper-content-products .card{
+    
+        width: calc((100% / 2) - 10px);
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+        .wrapper-content-products .card{
+    
+        width: calc((100% / 2) - 10px);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+        .wrapper-content-products .card{
+    
+        width: calc((100% / 3) - 10px);
+    }
+}
+
+
+@media only screen and (min-width: 960px) {
+        .wrapper-content-products .card{
+    
+        width: calc((100% / 4) - 10px);
+    }
+}
+
+
+

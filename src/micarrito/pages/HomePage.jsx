@@ -4,13 +4,13 @@ import { useFetch } from '../../hooks/useFetch'
 import { LoadingMessage } from '../../components/LoadingMessage';
 import { ProductCard } from '../../components/ProductCard';
 
-export const HomePage = () => {
+export const HomePage = (props) => {
   
   const { data, hasError, isLoading } = useFetch('https://fakestoreapi.com/products');
   
   
   return (
-    <MiCarritoLayout>
+    <MiCarritoLayout cantItems={props.cantItems} setCantItems={props.setCantItems} addToCart={props.addToCart}>
         <h1>Productos</h1>
         <hr/>
         {
