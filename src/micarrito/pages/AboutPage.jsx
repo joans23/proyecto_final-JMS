@@ -2,9 +2,9 @@ import React from 'react'
 import { MiCarritoLayout } from '../layout/MiCarritoLayout'
 import { Row,Container, Col, Card } from 'react-bootstrap'
 
-export const AboutPage = (props) => {
+export const AboutPage = () => {
   return (
-    <MiCarritoLayout cantItems={props.cantItems} setCantItems={props.setCantItems} addToCart={props.addToCart}>
+    <MiCarritoLayout>
         <section className="about-page py-5">
       <Container>
         <h2 className="text-center mb-4 fw-bold">Sobre Nosotros</h2>

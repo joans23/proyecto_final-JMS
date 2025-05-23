@@ -4,6 +4,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import  YouTubeIcon  from '@mui/icons-material/YouTube';
 import XIcon from '@mui/icons-material/X';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -18,9 +19,9 @@ export const Footer = () => {
           <Col md={4} className="mb-4 mb-md-0">
             <h5 className="fw-semibold">Enlaces</h5>
             <ul className="list-unstyled">
-              <li><a href="/" className="footer-link">Inicio</a></li>
-              <li><a href="/contact" className="footer-link">Contacto</a></li>
-              <li><a href="/about" className="footer-link">Sobre Nosotros</a></li>
+              <li><Link to={"/"} className="footer-link">Inicio</Link></li>
+              <li><Link to={"/contact"} className="footer-link">Contacto</Link></li>
+              <li><Link to={"/about"} className="footer-link">Sobre Nosotros</Link></li>
             </ul>
           </Col>
 

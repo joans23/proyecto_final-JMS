@@ -5,12 +5,12 @@ import { Footer } from '../../components/footer/Footer';
 
 
 
-export const MiCarritoLayout = ({children, addToCart, setCantItems, cantItems, carrito}) => {
+export const MiCarritoLayout = ({children}) => {
   return (
     <>
     <Row className='wrapper-header'>
     {/* NavBar */}
-    <NavBarPage  setCantItems={setCantItems} cantItems={cantItems} carrito={carrito}/>
+    <NavBarPage/>
     </Row>
     <Container>
         <Row className='wrapper-main'  >

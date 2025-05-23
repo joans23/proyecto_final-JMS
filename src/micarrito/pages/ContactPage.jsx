@@ -2,9 +2,9 @@ import React from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { MiCarritoLayout } from '../layout/MiCarritoLayout';
 
-export const ContactPage = (props) => {
+export const ContactPage = () => {
   return (
-    <MiCarritoLayout cantItems={props.cantItems} setCantItems={props.setCantItems} addToCart={props.addToCart} carrito={props.carrito}>
+    <MiCarritoLayout>
       <section className="contact-section py-5">
             <Container>
               <h2 className="text-center fw-bold mb-4">Contacto</h2>

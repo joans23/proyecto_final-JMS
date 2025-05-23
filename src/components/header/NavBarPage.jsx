@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Container, Navbar, Nav, Button, CloseButton} from 'react-bootstrap';
 import { Minicart } from './Minicart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { MinicartSidebar } from './MinicartSidebar';
+import { CartContext } from '../../micarrito/context/CartContext';
 
 
-export const NavBarPage = ({cantItems, setCantItems, carrito}) => {
+export const NavBarPage = () => {
 
   const navigate = useNavigate();
   const isAuth = localStorage.getItem('auth') === 'true';
@@ -15,6 +16,8 @@ export const NavBarPage = ({cantItems, setCantItems, carrito}) => {
     localStorage.removeItem('auth');
     navigate('/');
   }
+
+  const { cantItems, setCantItems, carrito } = useContext(CartContext); 
 
   return (
     <Navbar style={{background:" #1e1e2f"}} variant='dark' expand="lg" >

@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../../hooks/useFetch';
 import { MiCarritoLayout } from '../layout/MiCarritoLayout';
 import { CarouselPdp, LoadingMessage } from '../../components';
 import { Button } from 'react-bootstrap';
+import { CartContext } from '../context/CartContext';
 
-export const PageProduct = (props) => {
+export const PageProduct = () => {
 
     const { id } = useParams();
 
     const { data, hasError, isLoading } = useFetch(`https://fakestoreapi.com/products/${id}`);
+
+    const { addToCart } = useContext(CartContext);
  
   return (
-    <MiCarritoLayout cantItems={props.cantItems} setCantItems={props.setCantItems} addToCart={props.addToCart} carrito={props.carrito}>
+    <MiCarritoLayout>
         {
           isLoading
           ? <LoadingMessage/>
@@ -33,7 +36,7 @@ export const PageProduct = (props) => {
                         <p>{data.description}</p>
                     </div>
                     <div className='add-to-cart'>
-                        <Button variant='primary' onClick={()=>props.addToCart(data)}>Agregar al carrito</Button>
+                        <Button variant='primary' onClick={()=>addToCart(data)}>Agregar al carrito</Button>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Minicart } from './Minicart'
 import { ItemMinicart } from './ItemMinicart';
+import { CartContext } from '../../micarrito/context/CartContext';
 
-export const MinicartSidebar = ({carrito, cantItems}) => {
+export const MinicartSidebar = () => {
+
+    const { carrito, cantItems } = useContext(CartContext);
 
   return (
     <>  

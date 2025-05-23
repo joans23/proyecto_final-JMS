@@ -1,9 +1,9 @@
 import React from 'react'
 import { MiCarritoLayout } from '../layout/MiCarritoLayout'
 
-export const Cart = (props) => {
+export const Cart = () => {
   return (
-    <MiCarritoLayout cantItems={props.cantItems} setCantItems={props.setCantItems} addToCart={props.addToCart}>
+    <MiCarritoLayout >
       <div>Cart</div>
     </MiCarritoLayout>
 

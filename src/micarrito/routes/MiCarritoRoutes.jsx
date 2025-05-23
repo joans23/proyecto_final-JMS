@@ -5,43 +5,43 @@ import { PrivateRouter } from '../../router'
 import { Account, AdminUser } from '../../auth/pages'
 import { PageProduct } from '../pages/PageProduct'
 
-export const MiCarritoRoutes = ({ setCantItems, cantItems, addToCart, carrito}) => {
+export const MiCarritoRoutes = () => {
   return (
     <Routes>
 
         {/* HomePage */}
-        <Route path='/' element={<HomePage  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>} />
+        <Route path='/' element={<HomePage/>} />
 
         {/* AboutPage */}
-        <Route path='/about' element={<AboutPage  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>} />
+        <Route path='/about' element={<AboutPage/>} />
 
         {/* DestacadoPage */}
-        <Route path='/destacado' element={<DestacadoPage  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>} />
+        <Route path='/destacado' element={<DestacadoPage/>} />
 
         {/* OfertasPage */}
-        <Route path='/ofertas' element={<OfertasPage  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>} />
+        <Route path='/ofertas' element={<OfertasPage/>} />
 
         {/* User Account */}
         <Route path='perfil/:id' element={
-          <PrivateRouter> <Account setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/></PrivateRouter>
+          <PrivateRouter> <Account/></PrivateRouter>
         }/>
 
         {/* Page Product */}
-        <Route path='/product/:id' element={<PageProduct  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>}/>
+        <Route path='/product/:id' element={<PageProduct />}/>
         
         {/* Contact */}
-         <Route path='/contact' element={<ContactPage setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>}/>
+        <Route path='/contact' element={<ContactPage />}/>
 
         {/* Admin User */}
         <Route path='admin' element={
-          <PrivateRouter><AdminUser setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/></PrivateRouter>
+          <PrivateRouter><AdminUser /></PrivateRouter>
         }/>
 
         {/* Cart */}
-        <Route path='/cart' element={<Cart  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>} />
+        <Route path='/cart' element={<Cart/>} />
 
         {/* Default */}
-        <Route path='/*' element={<HomePage  setCantItems={setCantItems} cantItems={cantItems} addToCart={addToCart} carrito={carrito}/>} />
+        <Route path='/*' element={<HomePage/>} />
 
     </Routes>
   )
