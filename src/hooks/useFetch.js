@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const localCache = {};
 
-export const useFetch = ( url ) => {
+export const useFetch = ( url, section , id = 1) => {
   
   const [state, setState] = useState({
     data: null,
@@ -10,6 +10,8 @@ export const useFetch = ( url ) => {
     hasError: false,
     error: null,
   });
+
+  const productList = JSON.parse(localStorage.getItem("home"));
 
   useEffect(()=>{
     getFetch();
@@ -26,16 +28,38 @@ export const useFetch = ( url ) => {
   }
 
   const getFetch = async() =>{
-    if ( localCache[url] ){
-        setState({
-            data:localCache[url],
+
+    if( productList != null && ( section == "home" )){
+       setState({
+            data:productList,
             isLoading: false,
             hasError: false,
             error: null,
         });
+        return;
+    }else{
+      if ( localCache[url] ){
+            setState({
+                  data:localCache[url],
+                  isLoading: false,
+                  hasError: false,
+                  error: null,
+              });
+              return;
+          }else{
+            const producto = productList.find(product => product.id === parseInt(id, 10));
+            setState({
+              data: producto,
+              isLoading: false,
+              hasError: false,
+              error: null,
+            });
+            return;
+
+          }
     }
 
-     setLoadingState();
+    setLoadingState();
   
   const resp = await fetch(url);
   
@@ -62,6 +86,10 @@ export const useFetch = ( url ) => {
     hasError:false,
     error:null,
   });
+
+  if(section == "home"){
+    localStorage.setItem('home',JSON.stringify(data));
+  }
 
   localCache[ url ] = data;
 

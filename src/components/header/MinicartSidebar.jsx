@@ -7,11 +7,19 @@ export const MinicartSidebar = () => {
 
     const { carrito, cantItems } = useContext(CartContext);
 
+    const handleOpenSidebar = () => {
+        const sidebarMinicart = document.getElementsByClassName('minicart-sidebar')[0];
+        if(sidebarMinicart){
+            sidebarMinicart.classList.add('_active');
+        }
+    
+    }
+
   return (
     <>  
     <div className='nav-link'>
-        <div className='minicart-link wrapper-minicart-sidebar'>
-            <Minicart/><span className='counter'>{cantItems}</span>
+        <div className='minicart-link wrapper-minicart-sidebar' onClick={()=>handleOpenSidebar()}>
+            <span><Minicart/><span className='counter'>{cantItems}</span></span>
         </div>
         <div className='minicart-sidebar'>
             <div className='title-minicart'>

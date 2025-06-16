@@ -10,7 +10,7 @@ export const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     localStorage.setItem('auth','true');
-    navigate('/perfil/usuario23');
+    navigate('/admin');
   }
 
    const handleBack = () => {

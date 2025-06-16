@@ -10,7 +10,7 @@ export const PageProduct = () => {
 
     const { id } = useParams();
 
-    const { data, hasError, isLoading } = useFetch(`https://fakestoreapi.com/products/${id}`);
+    const { data, hasError, isLoading } = useFetch(`https://fakestoreapi.com/products/${id}`,"pdp", id);
 
     const { addToCart } = useContext(CartContext);
  

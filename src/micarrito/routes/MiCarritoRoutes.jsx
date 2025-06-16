@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AboutPage, Cart, ContactPage, DestacadoPage, HomePage, OfertasPage } from '../pages'
 import { PrivateRouter } from '../../router'
-import { Account, AdminUser } from '../../auth/pages'
+import { AdminUser } from '../../auth/pages'
 import { PageProduct } from '../pages/PageProduct'
 
 export const MiCarritoRoutes = () => {
@@ -20,11 +20,6 @@ export const MiCarritoRoutes = () => {
 
         {/* OfertasPage */}
         <Route path='/ofertas' element={<OfertasPage/>} />
-
-        {/* User Account */}
-        <Route path='perfil/:id' element={
-          <PrivateRouter> <Account/></PrivateRouter>
-        }/>
 
         {/* Page Product */}
         <Route path='/product/:id' element={<PageProduct />}/>

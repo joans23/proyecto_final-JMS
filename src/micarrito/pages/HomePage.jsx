@@ -6,7 +6,7 @@ import { ProductCard } from '../../components/ProductCard';
 
 export const HomePage = () => {
   
-  const { data, hasError, isLoading } = useFetch('https://fakestoreapi.com/products');
+  const { data, hasError, isLoading } = useFetch('https://fakestoreapi.com/products',"home");
   
   
   return (
