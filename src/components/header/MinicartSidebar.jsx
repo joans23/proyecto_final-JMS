@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Minicart } from './Minicart'
 import { ItemMinicart } from './ItemMinicart';
 import { CartContext } from '../../micarrito/context/CartContext';
+import CloseIcon from '@mui/icons-material/Close'
+import { SubtotalMinicart } from '../SubtotalMinicart';
 
 export const MinicartSidebar = () => {
 
@@ -15,17 +17,24 @@ export const MinicartSidebar = () => {
     
     }
 
+    const handleCloseMinicart = () => {
+        const sidebarMinicart = document.getElementsByClassName('minicart-sidebar')[0];
+        if(sidebarMinicart){
+            sidebarMinicart.classList.remove('_active');
+        }
+    }
+
   return (
     <>  
-    <div className='nav-link'>
+    <div className='nav-link minicart-icon'>
         <div className='minicart-link wrapper-minicart-sidebar' onClick={()=>handleOpenSidebar()}>
             <span><Minicart/><span className='counter'>{cantItems}</span></span>
         </div>
         <div className='minicart-sidebar'>
             <div className='title-minicart'>
-                <h4>Mi carrito</h4>
+                <h4>Mi carrito <CloseIcon className='close-minicart' onClick={()=>handleCloseMinicart()} /></h4>
                 <hr/>
-                <div>
+                 <div className='wrapper-item-minicart'>
                     {
                         carrito.map((item, index) => 
                             <ItemMinicart key={index} item={item}/>
@@ -34,6 +43,7 @@ export const MinicartSidebar = () => {
                     }
                 </div>
             </div>
+            <SubtotalMinicart/>
         </div>
     </div>
     </>

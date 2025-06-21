@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const localCache = {};
 
-export const useFetch = ( url, section , id = 1) => {
+export const useFetch = ( url, section , id = 0) => {
   
   const [state, setState] = useState({
     data: null,
@@ -47,7 +47,8 @@ export const useFetch = ( url, section , id = 1) => {
               });
               return;
           }else{
-            const producto = productList.find(product => product.id === parseInt(id, 10));
+            if(productList != null){
+  const producto = productList.find(product => parseInt(product.id,10) === parseInt(id, 10));
             setState({
               data: producto,
               isLoading: false,
@@ -55,7 +56,7 @@ export const useFetch = ( url, section , id = 1) => {
               error: null,
             });
             return;
-
+            }
           }
     }
 
