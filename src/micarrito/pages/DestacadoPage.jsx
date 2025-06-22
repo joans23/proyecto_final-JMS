@@ -5,7 +5,7 @@ import { LoadingMessage } from '../../components/LoadingMessage'
 export const DestacadoPage = () => {
   return (
     <MiCarritoLayout>
-        <LoadingMessage/>
+      <LoadingMessage />
     </MiCarritoLayout>
   )
 }

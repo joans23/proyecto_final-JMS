@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'; 
+import { Route, Routes } from 'react-router-dom';
 import { AuthRoutes } from '../auth/routes/AuthRoutes';
 import { MiCarritoRoutes } from '../micarrito/routes/MiCarritoRoutes';
 
@@ -8,12 +8,12 @@ export const AppRouter = () => {
   return (
 
     <Routes>
-        {/* Login */}
+      {/* Login */}
 
-        <Route path='/auth/*' element={<AuthRoutes />}/>
+      <Route path='/auth/*' element={<AuthRoutes />} />
 
-        {/* App Carrito */}
-        <Route path='/*' element={ <MiCarritoRoutes/>}/>
+      {/* App Carrito */}
+      <Route path='/*' element={<MiCarritoRoutes />} />
 
 
     </Routes>

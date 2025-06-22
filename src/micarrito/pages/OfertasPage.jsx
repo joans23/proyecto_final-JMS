@@ -4,8 +4,8 @@ import { MiCarritoLayout } from '../layout/MiCarritoLayout'
 export const OfertasPage = () => {
   return (
     <MiCarritoLayout >
-        <div>OfertasPage</div>
+      <div>OfertasPage</div>
     </MiCarritoLayout>
- 
+
   )
 }

@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 export const ProductForm = ({ onSubmit, initialData = {} }) => {
 
-    const [form, setForm] = useState({
+  const [form, setForm] = useState({
     image: '',
     title: '',
     price: '',
@@ -39,7 +39,7 @@ export const ProductForm = ({ onSubmit, initialData = {} }) => {
     Swal.close();
   };
 
-    return (
+  return (
     <form onSubmit={handleSubmit}>
       {['title', 'price', 'category', 'description', 'image'].map((field) => (
         <div key={field} className="mb-2">

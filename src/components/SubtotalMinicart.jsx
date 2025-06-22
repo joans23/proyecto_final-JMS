@@ -7,7 +7,7 @@ export const SubtotalMinicart = () => {
 
     const [total, setTotal] = useState(0);
 
-    useEffect(()=>{
+    useEffect(() => {
         let sumaTotal = 0;
         carrito.map(item => {
             sumaTotal += item.price * item.cantidad;
@@ -15,13 +15,13 @@ export const SubtotalMinicart = () => {
 
         setTotal(sumaTotal);
 
-  },[carrito]);
+    }, [carrito]);
 
     return (
-    <div className='wrapper-subtotal'>
-        <strong>TOTAL:</strong>
-        <span className='price-total'>$ {total}</span>
-        
-    </div>
-)
+        <div className='wrapper-subtotal'>
+            <strong>TOTAL:</strong>
+            <span className='price-total'>$ {total}</span>
+
+        </div>
+    )
 }
