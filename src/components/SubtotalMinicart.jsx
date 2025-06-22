@@ -10,7 +10,7 @@ export const SubtotalMinicart = () => {
     useEffect(()=>{
         let sumaTotal = 0;
         carrito.map(item => {
-            sumaTotal += item.price;
+            sumaTotal += item.price * item.cantidad;
         });
 
         setTotal(sumaTotal);
