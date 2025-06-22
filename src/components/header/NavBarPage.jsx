@@ -22,7 +22,7 @@ export const NavBarPage = () => {
   return (
     <Navbar style={{background:" #1e1e2f"}} variant='dark' expand="lg" >
         <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand as={Link} to='/'>
             <h4 className="fw-bold">mi carrito<span className="text-warning">.com</span></h4>
           </Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav'/>
