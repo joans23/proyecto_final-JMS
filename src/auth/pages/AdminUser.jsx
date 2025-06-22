@@ -16,7 +16,7 @@ const DATA_SAMPLE = DataSample;
 export const AdminUser = () => {
   const [productos, setProductos] = useState([]);
   const isMobile = useMobileView();
-  const {data} = useFetch(API_URL,'home');
+  const { data } = useFetch(API_URL, 'home');
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -64,7 +64,7 @@ export const AdminUser = () => {
       if (!res.ok) throw new Error('Error al recargar lista');
       const data = await res.json();
       setProductos(data);
-      localStorage.setItem("home",JSON.stringify(data));
+      localStorage.setItem("home", JSON.stringify(data));
       Swal.fire('Agregado', 'Producto creado correctamente', 'success');
     } catch (err) {
       console.error(err);
@@ -89,7 +89,7 @@ export const AdminUser = () => {
       if (!res.ok) throw new Error('Error al recargar lista');
       const data = await res.json();
       setProductos(data);
-     localStorage.setItem("home",JSON.stringify(data));
+      localStorage.setItem("home", JSON.stringify(data));
       Swal.fire('Editado', 'Producto actualizado correctamente', 'success');
     } catch (err) {
       console.error(err);
@@ -112,7 +112,7 @@ export const AdminUser = () => {
         if (!res.ok) throw new Error('Error al eliminar');
         const nuevos = productos.filter(p => p.id !== id);
         setProductos(nuevos);
-        localStorage.setItem("home",JSON.stringify(nuevos));
+        localStorage.setItem("home", JSON.stringify(nuevos));
         Swal.fire('Eliminado', 'Producto eliminado correctamente', 'success');
       } catch (err) {
         console.error(err);
@@ -134,41 +134,46 @@ export const AdminUser = () => {
     };
 
     const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-      if (!response.ok) throw new Error('Error al crear producto');
+    if (!response.ok) throw new Error('Error al crear producto');
   }
 
-  const reloadList = async ()=> {
+  const reloadList = async () => {
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error('Error al recargar lista');
     const data = await res.json();
     setProductos(data);
-    localStorage.setItem("home",JSON.stringify(data));
+    localStorage.setItem("home", JSON.stringify(data));
     Swal.fire('Agregado', 'Los productos fueron creados correctamente', 'success');
   }
 
   const handleCreateDataSample = async () => {
     try {
-      
-      if(Array.isArray(data) && data.length > 0){
-        await Promise.all(data.map(item => deleteAll(item.id)));
+
+      const res = await fetch(API_URL);
+      const currentProducts = await res.json();
+
+
+      if (Array.isArray(currentProducts) && currentProducts.length > 0) {
+        await Promise.all(currentProducts.map(item => deleteAll(item.id)));
         localStorage.removeItem("home");
         Swal.fire('Eliminado', 'Productos eliminados correctamente', 'success');
       }
 
+
       await Promise.all(DATA_SAMPLE.map(item => createAllSample(item)));
 
-      await  reloadList();
-
+      await reloadList();
     } catch (error) {
-      console.error('Error en creación de productos sample', err);
+      console.error('Error en creación de productos sample', error);
       Swal.fire('Error', 'Hubo un problema al crear los productos.', 'error');
     }
-  }
+  };
+
 
   return (
     <MiCarritoLayout>
@@ -213,8 +218,8 @@ export const AdminUser = () => {
                     <td colSpan='4' className='text-center'>No hay Productos</td>
                   </tr>
                 ) : (
-                  productos.map((producto) => (
-                    <tr key={producto.id}>
+                  productos.map((producto, index) => (
+                    <tr key={producto.id + index}>
                       <td><img src={producto.image} alt={producto.title} className='img-thumbnail' style={{ width: '80px' }} /></td>
                       <td>{producto.title}</td>
                       <td>${producto.price}</td>

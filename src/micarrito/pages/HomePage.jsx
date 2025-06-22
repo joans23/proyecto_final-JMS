@@ -22,8 +22,8 @@ export const HomePage = () => {
         <>
           {Array.isArray(data) && data.length > 0 ? (
             <div className='wrapper-content-products'>
-              {data.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {data.map((product,index) => (
+                <ProductCard key={product.id+index} product={product} />
               ))}
             </div>
           ) : (
