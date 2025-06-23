@@ -379,7 +379,22 @@ html {
     justify-content: space-between;
 }
 
+.btn.add-to-cart-item{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    border-radius: 70px;
+    padding: 8px;
+    transition: all .3s linear;
+    background: goldenrod;
+    border-color: goldenrod;
+    box-shadow: 1px 3px 4px 1px darkgoldenrod;
+}
 
+.btn.add-to-cart-item:hover{
+    transform: scale(1.1);
+}
 
 @media only screen and (max-width: 460px) {
     .wrapper-content-products .card {
