@@ -10,7 +10,7 @@ export const PageProduct = () => {
 
     const { id } = useParams();
 
-    const { data, hasError, isLoading } = useFetch(`https://fakestoreapi.com/products/${id}`, "pdp", id);
+    const { data, hasError, isLoading } = useFetch(`https://68533dfe0594059b23d0765b.mockapi.io/products/${id}`);
 
     const { addToCart } = useContext(CartContext);
 

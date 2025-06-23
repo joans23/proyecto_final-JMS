@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { MiCarritoLayout } from '../../micarrito/layout/MiCarritoLayout';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useMobileView } from '../../hooks/useMobileView';
 import { ProductForm } from '../../components';
-
 import DataSample from '../../auth/pages/data/data_sample.json';
 import { useFetch } from '../../hooks/useFetch';
 
@@ -14,25 +13,8 @@ const MySwal = withReactContent(Swal);
 const DATA_SAMPLE = DataSample;
 
 export const AdminUser = () => {
-  const [productos, setProductos] = useState([]);
   const isMobile = useMobileView();
-  const { data } = useFetch(API_URL, 'home');
-
-  useEffect(() => {
-    const fetchProductos = async () => {
-      try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error('Error en la carga');
-        const data = await res.json();
-        setProductos(data);
-        localStorage.removeItem('home');
-      } catch (err) {
-        console.error('Error al cargar productos', err);
-        Swal.fire('Error', 'No se pudieron cargar los productos.', 'error');
-      }
-    };
-    fetchProductos();
-  }, []);
+  const { data: productos = [], refetch, setData } = useFetch(API_URL);
 
   const openFormModal = (producto = null) => {
     MySwal.fire({
@@ -47,11 +29,8 @@ export const AdminUser = () => {
   };
 
   const handleCreate = async (form) => {
-    const { id, ...rest } = form;
-    const payload = {
-      ...rest,
-      price: parseFloat(rest.price)
-    };
+    const { ...rest } = form;
+    const payload = { ...rest, price: parseFloat(rest.price) };
     try {
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -59,12 +38,7 @@ export const AdminUser = () => {
         body: JSON.stringify(payload)
       });
       if (!response.ok) throw new Error('Error al crear');
-
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error('Error al recargar lista');
-      const data = await res.json();
-      setProductos(data);
-      localStorage.setItem("home", JSON.stringify(data));
+      await refetch();
       Swal.fire('Agregado', 'Producto creado correctamente', 'success');
     } catch (err) {
       console.error(err);
@@ -73,10 +47,7 @@ export const AdminUser = () => {
   };
 
   const handleUpdate = async (form) => {
-    const payload = {
-      ...form,
-      price: parseFloat(form.price)
-    };
+    const payload = { ...form, price: parseFloat(form.price) };
     try {
       const response = await fetch(`${API_URL}/${form.id}`, {
         method: 'PUT',
@@ -84,12 +55,7 @@ export const AdminUser = () => {
         body: JSON.stringify(payload)
       });
       if (!response.ok) throw new Error('Error al actualizar');
-
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error('Error al recargar lista');
-      const data = await res.json();
-      setProductos(data);
-      localStorage.setItem("home", JSON.stringify(data));
+      await refetch();
       Swal.fire('Editado', 'Producto actualizado correctamente', 'success');
     } catch (err) {
       console.error(err);
@@ -111,8 +77,7 @@ export const AdminUser = () => {
         const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
         if (!res.ok) throw new Error('Error al eliminar');
         const nuevos = productos.filter(p => p.id !== id);
-        setProductos(nuevos);
-        localStorage.setItem("home", JSON.stringify(nuevos));
+        setData(nuevos);
         Swal.fire('Eliminado', 'Producto eliminado correctamente', 'success');
       } catch (err) {
         console.error(err);
@@ -124,56 +89,39 @@ export const AdminUser = () => {
   const deleteAll = async (id) => {
     const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Error al eliminar producto con id: ' + id);
-  }
+  };
 
   const createAllSample = async (form) => {
-    const { ...rest } = form;
-    const payload = {
-      ...rest,
-      price: parseFloat(rest.price)
-    };
-
+    const payload = { ...form, price: parseFloat(form.price) };
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-
     if (!response.ok) throw new Error('Error al crear producto');
-  }
-
-  const reloadList = async () => {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error('Error al recargar lista');
-    const data = await res.json();
-    setProductos(data);
-    localStorage.setItem("home", JSON.stringify(data));
-    Swal.fire('Agregado', 'Los productos fueron creados correctamente', 'success');
-  }
+  };
 
   const handleCreateDataSample = async () => {
     try {
-
       const res = await fetch(API_URL);
       const currentProducts = await res.json();
 
-
       if (Array.isArray(currentProducts) && currentProducts.length > 0) {
         await Promise.all(currentProducts.map(item => deleteAll(item.id)));
-        localStorage.removeItem("home");
         Swal.fire('Eliminado', 'Productos eliminados correctamente', 'success');
       }
 
+      for (const item of DATA_SAMPLE) {
+        await createAllSample(item);
+      }
 
-      await Promise.all(DATA_SAMPLE.map(item => createAllSample(item)));
-
-      await reloadList();
+      await refetch();
+      Swal.fire('Agregado', 'Los productos fueron creados correctamente', 'success');
     } catch (error) {
       console.error('Error en creación de productos sample', error);
       Swal.fire('Error', 'Hubo un problema al crear los productos.', 'error');
     }
   };
-
 
   return (
     <MiCarritoLayout>
@@ -213,7 +161,7 @@ export const AdminUser = () => {
                 </tr>
               </thead>
               <tbody>
-                {productos.length === 0 ? (
+                {!productos || productos.length === 0 ? (
                   <tr>
                     <td colSpan='4' className='text-center'>No hay Productos</td>
                   </tr>
