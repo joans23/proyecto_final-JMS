@@ -379,7 +379,7 @@ html {
     justify-content: space-between;
 }
 
-.btn.add-to-cart-item{
+.btn.add-to-cart-item {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -392,8 +392,20 @@ html {
     box-shadow: 1px 3px 4px 1px darkgoldenrod;
 }
 
-.btn.add-to-cart-item:hover{
+.btn.add-to-cart-item:hover {
     transform: scale(1.1);
+}
+
+.number-page {
+    padding: 5px 15px;
+}
+
+.number-page._active {
+    border: 1px solid goldenrod;
+}
+
+.number-page._active:hover {
+    background: goldenrod;
 }
 
 @media only screen and (max-width: 460px) {

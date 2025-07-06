@@ -1,18 +1,18 @@
 # 🛒 mi carrito.com — Proyecto eCommerce en React
 
-Este es un proyecto de eCommerce construido con **React** y **React Router**, usando **React-Bootstrap** para el diseño UI. La aplicación simula una tienda online moderna con secciones como contacto, carrito, login y más.
+Este proyecto simula una tienda online moderna desarrollada con **React**, **React Router** y librerías como **MUI**, **Bootstrap** y **SweetAlert2**. Presenta una arquitectura modular con control simulado de autenticación y gestión de productos.
 
 ---
 
 ## 🚀 Funcionalidades principales
 
-- 🧾 Página de inicio con productos destacados
-- 🛍️ Vista de productos con carrusel de imágenes
-- 🛒 Carrito persistente y contador en la navbar
-- 🔐 Login simulado con control de acceso
-- 📦 Página de ofertas
-- 📇 Secciones: "Sobre nosotros", "Contacto"
-- ⚙️ Carga de datos mediante `useFetch`
+- 🧾 Inicio de sesión simulado (login)
+- 🛍️ Vista de administración de productos
+- 🛒 Carga de productos desde archivo de datos (`data_sample.json`)
+- 🔁 Eliminación y recreación masiva de productos
+- 🧠 Lógica de control con contexto y hooks
+- 📦 Interfaz responsiva con Bootstrap + MUI
+- ⚠️ Alertas visuales con SweetAlert2
 
 ---
 
@@ -20,72 +20,66 @@ Este es un proyecto de eCommerce construido con **React** y **React Router**, us
 
 ```
 src/
-├── App.jsx                    # Enrutador principal
-├── main.jsx                  # Entry point de React
-├── styles.css                # Estilos generales
-├── assets/                   # Recursos (ej: imágenes SVG)
+├── App.jsx                  # Componente principal
+├── main.jsx                 # Punto de entrada
+├── styles.css               # Estilos globales
 │
-├── auth/                     # Módulo de autenticación
-│   ├── pages/                # Páginas: Login, Admin, Account
-│   └── routes/               # Rutas protegidas
+├── assets/                  # Recursos estáticos (logos, íconos, etc.)
+│   └── react.svg
 │
-├── components/               # Componentes reutilizables
-│   ├── header/               # NavBar, Minicart y Sidebar
-│   ├── footer/               # Footer moderno
-│   └── CarouselPdp.jsx       # Carrusel de productos
-│
-├── hooks/
-│   └── useFetch.js           # Hook personalizado para llamadas HTTP
-│
-├── micarrito/                # Dominio principal de la app
-│   ├── layout/               # Layout global con navbar/footer
-│   ├── pages/                # Home, About, Contact, Cart, etc.
-│   └── routes/               # Rutas de navegación
-│
-└── router/
-    └── AppRouter.jsx         # Composición de rutas principales
+├── auth/                    # Módulo de autenticación y administración
+│   ├── pages/
+│   │   ├── AdminUser.jsx    # Vista de administración de productos
+│   │   ├── LoginPage.jsx    # Página de login
+│   │   └── index.js         # Exportación de páginas
+│   └── pages/data/
+│       └── data_sample.json # Datos de productos para pruebas
 ```
 
 ---
 
 ## ⚙️ Tecnologías utilizadas
 
-- [React](https://react.dev/)
-- [React Router v6](https://reactrouter.com/en/main)
-- [React Bootstrap](https://react-bootstrap.github.io/)
-- [Material UI](https://mui.com/material-ui/material-icons/)
-- `useState`, `useEffect`, y hooks personalizados
+- [React 19](https://react.dev/)
+- [React Router v6+](https://reactrouter.com/)
+- [Material UI](https://mui.com/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [SweetAlert2](https://sweetalert2.github.io/)
+- `useState`, `useEffect` y hooks personalizados
 
 ---
 
 ## ▶️ Cómo ejecutar el proyecto
 
-### 1. Cloná el repositorio
+### 1. Clonar el repositorio
 
 ```bash
 git clone git@github.com:joans23/proyecto_final-JMS.git
-cd mi-carrito
+cd miCarrito
 ```
 
-### 2. Instalá las dependencias
+### 2. Instalar dependencias
 
 ```bash
 npm install
 ```
 
-### 3. Iniciá el proyecto en desarrollo
+### 3. Ejecutar la app
 
 ```bash
 npm run dev
 ```
 
+La app se abrirá en `http://localhost:5173` (por defecto con Vite).
+
 ---
 
 ## ✍️ Notas adicionales
 
-- El estado global del carrito y cantidad de ítems se maneja mediante `useState` y se pasa como props desde el layout.
-- El login guarda un flag en `localStorage` (`auth: true`) para simular autenticación.
-- `useFetch.js` se puede adaptar fácilmente a distintos endpoints REST.
+- El login simulado usa `localStorage` (`auth: true`) para mantener el estado de sesión.
+- La vista de administrador (`AdminUser.jsx`) permite la carga de productos desde `data_sample.json`, ademas permite eliminarlos o reponerlos.
+- Se utilizan alertas interactivas con SweetAlert2 para mejorar la UX.
+- Este proyecto está diseñado para futuras extensiones (checkout, productos reales, backend, etc.).
 
 ---
 
